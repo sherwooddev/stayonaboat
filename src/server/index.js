@@ -1,0 +1,51 @@
+const express = require('express');
+const app = express();
+const MongoClient = require('mongodb').MongoClient;
+const bodyParser = require('body-parser');
+const path = require('path');
+
+require('dotenv').config();
+
+let database;
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/boat_profiles', express.static(path.join(__dirname, 'boat_profiles')));
+app.use(bodyParser.json());
+
+app.get('/api/boats', (req, res) => {
+    
+    const boatsCollection = database.collection('boats');
+
+    boatsCollection.find({}).toArray((err, docs) => {
+        return res.json(docs);
+    });
+});
+
+app.post('/api/boats', (req, res) => {
+    const user = req.body;
+    const boatsCollection = database.collection('boats');
+
+    boatsCollection.insertOne(user, (err, r) => {
+        if (err) {
+            return res.status(500).json({ error: 'Error inserting new record.' });
+        }
+        const newRecord = r.ops[0];
+        return res.status(201).json(newRecord);
+    });
+});
+
+app.get('*', (req, res) => {
+    return res.sendFile(path.join(__dirname, 'public/index.html'));
+});
+
+MongoClient.connect(process.env.DB_CONN, (err, db) => {
+
+    console.log('connected to database');
+
+    app.listen(3000, () => {
+        database = db;
+        console.log('listening on 3000');
+    });
+
+})
+

@@ -2,5 +2,9 @@
     "/api": {
         "target": "http://localhost:3000",
         "secure": false
+    },
+    "/boat_profiles": {
+        "target": "http://localhost:3000",
+        "secure": false
     }
 }
