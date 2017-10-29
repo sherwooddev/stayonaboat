@@ -32,7 +32,7 @@
 npm-debug.log
 testem.log
 /typings
-/src/server/data/*.*
+/src/server/data/*.json
 
 # e2e
 /e2e/*.js
