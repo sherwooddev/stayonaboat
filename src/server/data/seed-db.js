@@ -20,7 +20,7 @@ function seedCollection(collectionName, initialRecords) {
         });
 
         collection.insertMany(initialRecords, (err, result) => {
-            console.log('${result.insertedCount} records inserted.');
+            console.log(`${result.insertedCount} records inserted.`);
             console.log('closing connection...');
             db.close();
             console.log('Done.');
