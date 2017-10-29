@@ -1,0 +1,37 @@
+[
+    {
+      "name": "John Doe",
+      "address": "91955 Mosinee Parkway",
+      "address2":"address2",
+      "city":"Indianapolis",
+      "state":"IN",
+      "zip":"46278",
+      "country":"United States",
+      "phone": "(314) 291-6958",
+      "photoUrlexterior": "/boat_profiles/crownline-boats-sport-yacht-sy-350sy-06.jpg",
+      "photoUrlinterior": "/boat_profiles/crownline-boats-sport-yacht-sy-350sy-feature-05.jpg"
+    },
+    {
+      "name": "Jane Doe",
+      "address": "62 Warner Place",
+      "address2":"address2",
+      "city":"Washington",
+      "state":"DC",
+      "zip":"20525",
+      "country":"United States",
+      "phone": "(902) 758-7304",
+      "photoUrlexterior": "/boat_profiles/crownline-boats-sport-yacht-sy-350sy-06.jpg",
+      "photoUrlinterior": "/boat_profiles/crownline-boats-sport-yacht-sy-350sy-feature-05.jpg"    },
+    {
+      "name": "Sam Doe",
+      "address": "0864 Bluestem Center",
+      "address2":"address2",
+      "city":"Sacramento",
+      "state":"CA",
+      "zip":"95823",
+      "country":"United States",
+      "phone": "(462) 542-2378",
+      "photoUrlexterior": "/boat_profiles/crownline-boats-sport-yacht-sy-350sy-06.jpg",
+      "photoUrlinterior": "/boat_profiles/crownline-boats-sport-yacht-sy-350sy-feature-05.jpg"    }
+  ]
+  
