@@ -9,6 +9,7 @@ import { MenuComponent } from './menu/menu.component';
 import { BoatListComponent } from './boat-list/boat-list.component';
 import { BoatComponent } from './boat/boat.component';
 import { AddBoatComponent } from './add-boat/add-boat.component';
+import { ApiService } from './shared/api.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { AddBoatComponent } from './add-boat/add-boat.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Response } from '@angular/http';
 import { Boat } from '../shared/boat.model';
-import 'rxjs/add/operator/map';
+import { ApiService } from '../shared/api.service';
 
 @Component({
   selector: 'app-boat-list',
@@ -12,11 +11,10 @@ export class BoatListComponent implements OnInit {
 
   boats: Boat[];
 
-  constructor(public http: Http) { }
+  constructor(public api: ApiService) { }
 
   ngOnInit() {
-    this.http.get('/api/boats')
-      .map((res: Response) => res.json())
+    this.api.get('boats')
       .subscribe(data => this.boats = data);
   }
 

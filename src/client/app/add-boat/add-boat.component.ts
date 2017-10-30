@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { NgForm } from '@angular/forms';
 import { Boat } from '../shared/boat.model';
+import { ApiService } from '../shared/api.service';
 
 @Component({
   selector: 'app-add-boat',
@@ -14,7 +14,7 @@ export class AddBoatComponent implements OnInit {
   loading: Boolean = false;
   newBoat: Boat;
 
-  constructor(public http: Http) { }
+  constructor(public api: ApiService) { }
 
   ngOnInit() {
   }
@@ -37,13 +37,7 @@ export class AddBoatComponent implements OnInit {
       photoUrlinterior: formValues.photoInterior
     };
 
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-
-    const requestOptions = new RequestOptions({ headers: headers });
-
-    this.http.post('/api/boats', boat, requestOptions)
-      .map((res: Response) => res.json())
+    this.api.post('boats', boat)
       .subscribe(data => {
         form.reset();
         this.loading = false;
