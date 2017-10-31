@@ -10,6 +10,9 @@ import { BoatListComponent } from './boat-list/boat-list.component';
 import { BoatComponent } from './boat/boat.component';
 import { AddBoatComponent } from './add-boat/add-boat.component';
 import { ApiService } from './shared/api.service';
+import { AuthService } from './shared/auth.service';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,8 @@ import { ApiService } from './shared/api.service';
     MenuComponent,
     BoatListComponent,
     BoatComponent,
-    AddBoatComponent
+    AddBoatComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,7 @@ import { ApiService } from './shared/api.service';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [ApiService],
+  providers: [ApiService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BoatListComponent } from './boat-list/boat-list.component';
 import { AddBoatComponent } from './add-boat/add-boat.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {
@@ -11,11 +13,21 @@ const routes: Routes = [
   },
   {
     path: 'boats',
-    component: BoatListComponent
+    component: BoatListComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'new',
-    component: AddBoatComponent
+    component: AddBoatComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: '**',
+    redirectTo: 'boats'
   }
 ];
 
