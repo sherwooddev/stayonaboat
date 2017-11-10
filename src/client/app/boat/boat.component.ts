@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, HostBinding } from '@angular/core';
+import { AuthService } from '../shared/auth.service';
 import { Boat } from '../shared/boat.model';
 
 @Component({
@@ -12,7 +13,7 @@ export class BoatComponent implements OnInit {
 
   @HostBinding('class') columnClass = 'four wide column';
 
-  constructor() { }
+  constructor(public auth: AuthService) { }
 
   ngOnInit() {
   }

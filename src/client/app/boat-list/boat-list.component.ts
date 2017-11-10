@@ -18,4 +18,11 @@ export class BoatListComponent implements OnInit {
       .subscribe(data => this.boats = data);
   }
 
+  deleteBoat() {
+    // this.api.delete('boats')
+    // .subscribe(data => {
+    //   form.reset();
+    //   this.loading = false;
+    // });
+  }
 }

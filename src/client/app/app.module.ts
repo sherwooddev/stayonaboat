@@ -13,6 +13,7 @@ import { ApiService } from './shared/api.service';
 import { AuthService } from './shared/auth.service';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
+import { UpdateBoatComponent } from './update-boat/update-boat.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AuthGuard } from './auth.guard';
     BoatListComponent,
     BoatComponent,
     AddBoatComponent,
-    LoginComponent
+    LoginComponent,
+    UpdateBoatComponent
   ],
   imports: [
     BrowserModule,

@@ -17,4 +17,8 @@
       {{boat.phone}}
     </span>
   </div>
+  <div class="extra content" *ngIf="auth.isLoggedIn()">
+    <i [routerLink]="['/update']" class="circular edit link icon"></i>
+    <i class="circular trash link icon" onclick="deleteBoat(this)"></i>
+  </div>
 </div>

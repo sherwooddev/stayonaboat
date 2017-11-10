@@ -6,17 +6,28 @@ import 'rxjs/add/observable/throw';
 import { Observable } from 'rxjs/Observable';
 import { environment } from '../../environments/environment';
 import { AuthService } from './auth.service';
+import { Boat } from '../shared/boat.model';
+
 
 @Injectable()
 export class ApiService {
 
   private baseUrl = environment.apiUrl;
+  boats: Boat[];
 
   constructor(private http: Http, private auth: AuthService) { }
 
   get(url: string) {
     return this.request(url, RequestMethod.Get);
   }
+
+  // getBoatById(_id: number) {
+  //   for (let i = 0; i <= this.boats.length - 1; i++) {
+  //     if (this.boats[i]._id === boatId) {
+  //       return this.boats[i];
+  //     }
+  //   }
+  // }
 
   post(url: string, body: Object) {
     return this.request(url, RequestMethod.Post, body);
