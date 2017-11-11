@@ -15,7 +15,7 @@ export class UpdateBoatComponent implements OnInit {
   loading: Boolean = false;
   boats: Boat[];
   updateBoat: Boat;
-  boatId: number;
+  boatId: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,10 +24,18 @@ export class UpdateBoatComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.route.params.forEach((urlParameters) => {
-    //   this.boatId = urlParameters['id'];
-    // });
-    // this.updateBoat = this.api.getBoatById(this.boatId);
+    this.route.params.forEach((urlParameters) => {
+      this.boatId = urlParameters['id'];
+    });
+    this.updateBoat = this.getBoatById(this.boatId);
+  }
+
+  getBoatById(id: string) {
+    for (let i = 0; i <= this.boats.length - 1; i++) {
+      if (this.boats[i].id === id) {
+        return this.boats[i];
+      }
+    }
   }
 
   onSubmit(form: NgForm) {
@@ -36,6 +44,7 @@ export class UpdateBoatComponent implements OnInit {
     const formValues = Object.assign({}, form.value);
 
     const boat: Boat = {
+      id: `{formValues.id}`,
       name: `${formValues.firstName} ${formValues.lastName}`,
       address: formValues.address,
       address2: formValues.address2,

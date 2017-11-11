@@ -21,9 +21,9 @@ export class ApiService {
     return this.request(url, RequestMethod.Get);
   }
 
-  // getBoatById(_id: number) {
+  // getBoatById(id: string) {
   //   for (let i = 0; i <= this.boats.length - 1; i++) {
-  //     if (this.boats[i]._id === boatId) {
+  //     if (this.boats[i].id === id) {
   //       return this.boats[i];
   //     }
   //   }

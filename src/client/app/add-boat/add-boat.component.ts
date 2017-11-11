@@ -25,6 +25,7 @@ export class AddBoatComponent implements OnInit {
     const formValues = Object.assign({}, form.value);
 
     const boat: Boat = {
+      id: `{formValues.id}`,
       name: `${formValues.firstName} ${formValues.lastName}`,
       address: formValues.address,
       address2: formValues.address2,

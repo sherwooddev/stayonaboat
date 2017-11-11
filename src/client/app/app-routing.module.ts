@@ -23,7 +23,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'update',
+    path: 'update/:id',
     component: UpdateBoatComponent,
     canActivate: [AuthGuard]
   },
