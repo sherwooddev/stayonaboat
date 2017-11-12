@@ -65,6 +65,7 @@ export class ApiService {
 
   onRequestError(res: Response) {
     const statusCode = res.status;
+    console.log(statusCode);
     const body = res.json();
 
     const error = {

@@ -19,7 +19,7 @@ export class UpdateBoatComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private location: Location,
+    // private location: Location,
     public api: ApiService
   ) { }
 
