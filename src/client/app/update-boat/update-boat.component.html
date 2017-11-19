@@ -1,4 +1,25 @@
-<div class="update-form-container">
+<div class="ui card">
+  <div class="image">
+    <img [src]="updateBoat?.photoUrlexterior">
+  </div>
+  <div class="image">
+    <img [src]="updateBoat?.photoUrlinterior">
+  </div>
+  <div class="content">
+    <a class="header">{{updateBoat.name}}</a>
+    <div class="description">
+      {{updateBoat.address}} {{updateBoat.city}}, {{updateBoat.state}}  {{updateBoat.zip}}
+    </div>
+  </div>
+  <div class="extra content">
+    <span>
+      <i class="call icon"></i>
+      {{updateBoat.phone}}
+    </span>
+  </div>
+</div>
+
+<!-- <div class="update-form-container">
     <div class="ui icon message" *ngIf="updateBoat">
         <i class="notched check green icon"></i>
         <i class="close icon" (click)="newBoat = null"></i>
@@ -68,4 +89,4 @@
       </div>
       <button type="submit" class="ui submit large grey button right floated">Submit</button>
     </form>
-  </div>
+  </div> -->

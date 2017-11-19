@@ -17,23 +17,54 @@ function apiRouter(database) {
     });
     
     router.get('/boats', (req, res) => {
+        const boat = req.body;
+        console.log('made it get the boats');
 
         const boatsCollection = database.collection('boats');
 
         boatsCollection.find({}).toArray((err, docs) => {
-            return res.json(docs)
+            return res.json(docs);
+        });
+
+    });
+
+    router.get('/update/:id', (req, res) => {
+        // console.log(req);
+        console.log('made it update');
+        // const boatId = req.body.boatId;
+
+        const boatsCollection = database.collection('boats');
+
+        console.log('made it update2');
+        console.log(req.params.id);
+
+        boatsCollection.findOne({ _id: req.params.id }, (err, docs) => {
+            // if (err) {
+            //     return res.status(500).json({ error: 'boat not found' })
+            // }
+            // if (req.params.id) {
+            //     res.status(200).send(docs)
+            // } else {
+            //     res.status(404).send("No boats found with that ID")
+            // }
+            if (err) {
+                console.log(err);    
+                res.send(err); 
+            }
+            return res.json(docs);
         });
 
     });
 
     router.post('/boats', (req, res) => {
         const user = req.body;
+        console.log('made it add');
 
         const boatsCollection = database.collection('boats');
 
         boatsCollection.insertOne(user, (err, r) => {
         if (err) {
-            return res.status(500).json({ error: 'Error inserting new record.' })
+            return res.status(500).json({ error: 'Error inserting new record.' });
         }
 
         const newRecord = r.ops[0];
@@ -50,7 +81,7 @@ function apiRouter(database) {
         usersCollection
         .findOne({ username: user.username }, (err, result) => {
             if (!result) {
-            return res.status(404).json({ error: 'user not found' })
+                return res.status(404).json({ error: 'user not found' });
             }
 
             if (!bcrypt.compareSync(user.password, result.password)) {

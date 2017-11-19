@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { environment } from '../../environments/environment';
 import { AuthService } from './auth.service';
 import { Boat } from '../shared/boat.model';
+import { Body } from '@angular/http/src/body';
 
 
 @Injectable()
@@ -21,13 +22,18 @@ export class ApiService {
     return this.request(url, RequestMethod.Get);
   }
 
-  // getBoatById(id: string) {
-  //   for (let i = 0; i <= this.boats.length - 1; i++) {
-  //     if (this.boats[i].id === id) {
-  //       return this.boats[i];
-  //     }
-  //   }
+  // getById(url: string) {
+  //   console.log(url);
+  //   // console.log('madeittogetbyid');
+  //   return this.request(url, RequestMethod.Get);
   // }
+
+  getById(url: string) {
+    console.log(url);
+    // console.log(body);
+    console.log('madeittogetbyid');
+    return this.request(url, RequestMethod.Get);
+  }
 
   post(url: string, body: Object) {
     return this.request(url, RequestMethod.Post, body);
@@ -52,11 +58,14 @@ export class ApiService {
       headers: headers
     });
 
+    // console.log(body);
     if (body) {
       requestOptions.body = body;
     }
 
     const request = new Request(requestOptions);
+
+    console.log(request);
 
     return this.http.request(request)
       .map((res: Response) => res.json())
@@ -65,8 +74,11 @@ export class ApiService {
 
   onRequestError(res: Response) {
     const statusCode = res.status;
-    console.log(statusCode);
+    console.log(res.status);
+    console.log('heres the error');
+    console.log(res);
     const body = res.json();
+    console.log(body);
 
     const error = {
       statusCode: statusCode,

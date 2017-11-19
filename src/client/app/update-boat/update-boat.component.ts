@@ -16,10 +16,10 @@ export class UpdateBoatComponent implements OnInit {
   boats: Boat[];
   updateBoat: Boat;
   boatId: string;
+  add: string;
 
   constructor(
     private route: ActivatedRoute,
-    // private location: Location,
     public api: ApiService
   ) { }
 
@@ -27,15 +27,9 @@ export class UpdateBoatComponent implements OnInit {
     this.route.params.forEach((urlParameters) => {
       this.boatId = urlParameters['id'];
     });
-    this.updateBoat = this.getBoatById(this.boatId);
-  }
-
-  getBoatById(id: string) {
-    for (let i = 0; i <= this.boats.length - 1; i++) {
-      if (this.boats[i].id === id) {
-        return this.boats[i];
-      }
-    }
+    this.api.getById(`update/${this.boatId}`)
+      .subscribe(data => this.updateBoat = data);
+    console.log('im back');
   }
 
   onSubmit(form: NgForm) {
