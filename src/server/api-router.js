@@ -29,16 +29,15 @@ function apiRouter(database) {
     });
 
     router.get('/update/:id', (req, res) => {
-        // console.log(req);
         console.log('made it update');
-        // const boatId = req.body.boatId;
 
         const boatsCollection = database.collection('boats');
 
         console.log('made it update2');
         console.log(req.params.id);
+        var ObjectID = require('mongodb').ObjectID;
 
-        boatsCollection.findOne({ _id: req.params.id }, (err, docs) => {
+        boatsCollection.findOne({ _id: new ObjectID(req.params.id) }, (err, docs) => {
             // if (err) {
             //     return res.status(500).json({ error: 'boat not found' })
             // }

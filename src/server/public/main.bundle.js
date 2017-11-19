@@ -705,11 +705,6 @@ var ApiService = (function () {
     ApiService.prototype.get = function (url) {
         return this.request(url, __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestMethod */].Get);
     };
-    // getById(url: string) {
-    //   console.log(url);
-    //   // console.log('madeittogetbyid');
-    //   return this.request(url, RequestMethod.Get);
-    // }
     ApiService.prototype.getById = function (url) {
         console.log(url);
         // console.log(body);

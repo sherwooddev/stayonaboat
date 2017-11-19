@@ -22,12 +22,6 @@ export class ApiService {
     return this.request(url, RequestMethod.Get);
   }
 
-  // getById(url: string) {
-  //   console.log(url);
-  //   // console.log('madeittogetbyid');
-  //   return this.request(url, RequestMethod.Get);
-  // }
-
   getById(url: string) {
     console.log(url);
     // console.log(body);
