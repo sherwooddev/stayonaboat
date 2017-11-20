@@ -23,9 +23,9 @@ export class ApiService {
   }
 
   getById(url: string) {
-    console.log(url);
+    // console.log(url);
     // console.log(body);
-    console.log('madeittogetbyid');
+    // console.log('madeittogetbyid');
     return this.request(url, RequestMethod.Get);
   }
 
@@ -59,7 +59,7 @@ export class ApiService {
 
     const request = new Request(requestOptions);
 
-    console.log(request);
+    // console.log(request);
 
     return this.http.request(request)
       .map((res: Response) => res.json())

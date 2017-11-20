@@ -18,7 +18,7 @@ function apiRouter(database) {
     
     router.get('/boats', (req, res) => {
         const boat = req.body;
-        console.log('made it get the boats');
+        // console.log('made it get the boats');
 
         const boatsCollection = database.collection('boats');
 
@@ -29,12 +29,12 @@ function apiRouter(database) {
     });
 
     router.get('/update/:id', (req, res) => {
-        console.log('made it update');
+        // console.log('made it update');
 
         const boatsCollection = database.collection('boats');
 
-        console.log('made it update2');
-        console.log(req.params.id);
+        // console.log('made it update2');
+        // console.log(req.params.id);
         var ObjectID = require('mongodb').ObjectID;
 
         boatsCollection.findOne({ _id: new ObjectID(req.params.id) }, (err, docs) => {

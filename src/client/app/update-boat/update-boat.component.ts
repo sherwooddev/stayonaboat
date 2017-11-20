@@ -29,7 +29,7 @@ export class UpdateBoatComponent implements OnInit {
     });
     this.api.getById(`update/${this.boatId}`)
       .subscribe(data => this.updateBoat = data);
-    console.log('im back');
+    // console.log('im back');
   }
 
   onSubmit(form: NgForm) {
