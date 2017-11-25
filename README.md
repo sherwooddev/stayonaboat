@@ -1,10 +1,23 @@
 # StayOnABoat
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.4.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.4.  The project scope is to generate a site for people to list boats for rental.  Current state of the project includes working functionality for API services consisting of authentication, adding and retrieval of records from a MongoDB database.  Work is ongoing on deletion and updating of records.
+
+## Running the Application
+
+In a terminal:
+
+Clone the adding-update-and-delete branch
+`ng build`
+`npm run start:server`
+
+Browser:
+Navigate to `http://localhost:3000/`
+Login with Admin and pw contained in users.json file (unique pw..only included for demo purposes..not pw for database)
+
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm run start:server` for a dev server. Navigate to `http://localhost:3000/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
