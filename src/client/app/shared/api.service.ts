@@ -23,9 +23,6 @@ export class ApiService {
   }
 
   getById(url: string) {
-    // console.log(url);
-    // console.log(body);
-    // console.log('madeittogetbyid');
     return this.request(url, RequestMethod.Get);
   }
 
@@ -52,14 +49,14 @@ export class ApiService {
       headers: headers
     });
 
-    // console.log(body);
+    console.log(body);
     if (body) {
       requestOptions.body = body;
     }
 
     const request = new Request(requestOptions);
 
-    // console.log(request);
+    console.log(request);
 
     return this.http.request(request)
       .map((res: Response) => res.json())

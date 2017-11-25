@@ -6,6 +6,29 @@ const checkJwt = require('express-jwt');
 function apiRouter(database) {
     const router = express.Router();
 
+    router.delete('/delete/:id', (req, res) => {
+        
+        const boatsCollection = database.collection('boats');
+
+        var ObjectID = require('mongodb').ObjectID;
+
+        boatsCollection.remove({ _id: new ObjectID(req.params.id) }, (err, docs) => {
+            // if (err) {
+            //     return res.status(500).json({ error: 'boat not found' })
+            // }
+            // if (req.params.id) {
+            //     res.status(200).send(docs)
+            // } else {
+            //     res.status(404).send("No boats found with that ID")
+            // }
+            if (err) {
+                console.log(err);    
+                res.send(err); 
+            }
+            return res.json(docs);
+        });
+    });
+    
     router.use(
         checkJwt({ secret: process.env.JWT_SECRET }).unless({ path: '/api/authenticate'})
     );
@@ -29,12 +52,9 @@ function apiRouter(database) {
     });
 
     router.get('/update/:id', (req, res) => {
-        // console.log('made it update');
 
         const boatsCollection = database.collection('boats');
 
-        // console.log('made it update2');
-        // console.log(req.params.id);
         var ObjectID = require('mongodb').ObjectID;
 
         boatsCollection.findOne({ _id: new ObjectID(req.params.id) }, (err, docs) => {
@@ -52,7 +72,6 @@ function apiRouter(database) {
             }
             return res.json(docs);
         });
-
     });
 
     router.post('/boats', (req, res) => {

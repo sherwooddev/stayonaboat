@@ -19,6 +19,6 @@
   </div>
   <div class="extra content" *ngIf="auth.isLoggedIn()">
     <i [routerLink]="['/update/',boat._id]" class="circular edit link icon"></i>
-    <i class="circular trash link icon" onclick="deleteBoat(this)"></i>
+    <i class="circular trash link icon" ng-click="deleteBoat(boat._id)"></i>
   </div>
 </div>

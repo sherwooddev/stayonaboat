@@ -407,13 +407,6 @@ var BoatListComponent = (function () {
         this.api.get('boats')
             .subscribe(function (data) { return _this.boats = data; });
     };
-    BoatListComponent.prototype.deleteBoat = function () {
-        // this.api.delete('boats')
-        // .subscribe(data => {
-        //   form.reset();
-        //   this.loading = false;
-        // });
-    };
     return BoatListComponent;
 }());
 BoatListComponent = __decorate([
@@ -433,7 +426,7 @@ var _a;
 /***/ "../../../../../src/client/app/boat/boat.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui card\">\n  <div class=\"image\">\n    <img [src]=\"boat?.photoUrlexterior\">\n  </div>\n  <div class=\"image\">\n    <img [src]=\"boat?.photoUrlinterior\">\n  </div>\n  <div class=\"content\">\n    <a class=\"header\">{{boat.name}}</a>\n    <div class=\"description\">\n      {{boat.address}} {{boat.city}}, {{boat.state}}  {{boat.zip}}\n    </div>\n  </div>\n  <div class=\"extra content\">\n    <span>\n      <i class=\"call icon\"></i>\n      {{boat.phone}}\n    </span>\n  </div>\n  <div class=\"extra content\" *ngIf=\"auth.isLoggedIn()\">\n    <i [routerLink]=\"['/update/',boat._id]\" class=\"circular edit link icon\"></i>\n    <i class=\"circular trash link icon\" onclick=\"deleteBoat(this)\"></i>\n  </div>\n</div>\n"
+module.exports = "<div class=\"ui card\">\n  <div class=\"image\">\n    <img [src]=\"boat?.photoUrlexterior\">\n  </div>\n  <div class=\"image\">\n    <img [src]=\"boat?.photoUrlinterior\">\n  </div>\n  <div class=\"content\">\n    <a class=\"header\">{{boat.name}}</a>\n    <div class=\"description\">\n      {{boat.address}} {{boat.city}}, {{boat.state}}  {{boat.zip}}\n    </div>\n  </div>\n  <div class=\"extra content\">\n    <span>\n      <i class=\"call icon\"></i>\n      {{boat.phone}}\n    </span>\n  </div>\n  <div class=\"extra content\" *ngIf=\"auth.isLoggedIn()\">\n    <i [routerLink]=\"['/update/',boat._id]\" class=\"circular edit link icon\"></i>\n    <i class=\"circular trash link icon\" ng-click=\"deleteBoat(boat._id)\"></i>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -464,6 +457,8 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_auth_service__ = __webpack_require__("../../../../../src/client/app/shared/auth.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_boat_model__ = __webpack_require__("../../../../../src/client/app/shared/boat.model.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__shared_boat_model___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__shared_boat_model__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__shared_api_service__ = __webpack_require__("../../../../../src/client/app/shared/api.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -476,12 +471,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
+
 var BoatComponent = (function () {
-    function BoatComponent(auth) {
+    function BoatComponent(auth, route, api) {
         this.auth = auth;
+        this.route = route;
+        this.api = api;
+        this.loading = false;
         this.columnClass = 'four wide column';
     }
     BoatComponent.prototype.ngOnInit = function () {
+    };
+    BoatComponent.prototype.deleteBoat = function (boatId) {
+        var _this = this;
+        // this.route.params.forEach((urlParameters) => {
+        //   this.boatId = urlParameters['id'];
+        // });
+        console.log('madeittodelete');
+        this.api.delete("delete/" + this.boatId)
+            .subscribe(function (data) { return _this.boat = data; });
     };
     return BoatComponent;
 }());
@@ -499,10 +508,10 @@ BoatComponent = __decorate([
         template: __webpack_require__("../../../../../src/client/app/boat/boat.component.html"),
         styles: [__webpack_require__("../../../../../src/client/app/boat/boat.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__shared_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_auth_service__["a" /* AuthService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__shared_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_auth_service__["a" /* AuthService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__shared_api_service__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_api_service__["a" /* ApiService */]) === "function" && _d || Object])
 ], BoatComponent);
 
-var _a, _b;
+var _a, _b, _c, _d;
 //# sourceMappingURL=boat.component.js.map
 
 /***/ }),
@@ -706,9 +715,6 @@ var ApiService = (function () {
         return this.request(url, __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestMethod */].Get);
     };
     ApiService.prototype.getById = function (url) {
-        // console.log(url);
-        // console.log(body);
-        // console.log('madeittogetbyid');
         return this.request(url, __WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* RequestMethod */].Get);
     };
     ApiService.prototype.post = function (url, body) {
@@ -730,12 +736,12 @@ var ApiService = (function () {
             method: method,
             headers: headers
         });
-        // console.log(body);
+        console.log(body);
         if (body) {
             requestOptions.body = body;
         }
         var request = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Request */](requestOptions);
-        // console.log(request);
+        console.log(request);
         return this.http.request(request)
             .map(function (res) { return res.json(); })
             .catch(function (res) { return _this.onRequestError(res); });
