@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Injectable()
 export class AuthService {
 
-  storageKey: string = 'contact-manager-jwt';
+  storageKey = 'contact-manager-jwt';
 
   constructor(private router: Router) { }
 
