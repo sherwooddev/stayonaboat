@@ -6,7 +6,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 In a terminal:
 
-Clone the adding-update-and-delete branch
+Clone the Master branch
 `ng build`
 `npm run start:server`
 
