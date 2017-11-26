@@ -49,14 +49,14 @@ export class ApiService {
       headers: headers
     });
 
-    console.log(body);
+    // console.log(requestOptions);
     if (body) {
       requestOptions.body = body;
     }
 
     const request = new Request(requestOptions);
 
-    console.log(request);
+    // console.log(request);
 
     return this.http.request(request)
       .map((res: Response) => res.json())

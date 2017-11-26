@@ -27,11 +27,7 @@ export class BoatComponent implements OnInit {
   }
 
   deleteBoat(boatId) {
-    // this.route.params.forEach((urlParameters) => {
-    //   this.boatId = urlParameters['id'];
-    // });
-    console.log('madeittodelete');
-    this.api.delete(`delete/${this.boatId}`)
+    this.api.delete(`delete/${boatId}`)
     .subscribe(data => this.boat = data);
   }
 

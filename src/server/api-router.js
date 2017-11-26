@@ -7,7 +7,7 @@ function apiRouter(database) {
     const router = express.Router();
 
     router.delete('/delete/:id', (req, res) => {
-        
+
         const boatsCollection = database.collection('boats');
 
         var ObjectID = require('mongodb').ObjectID;
@@ -28,6 +28,12 @@ function apiRouter(database) {
             return res.json(docs);
         });
     });
+
+    // router.deleteWithId(url: string, key: string, val: string): Observable < any > {
+    //     return this.http.delete(url + "/?" + key + "=" + val, this.options)
+    //         .map(this.extractData)
+    //         .catch(this.handleError);
+    // }
     
     router.use(
         checkJwt({ secret: process.env.JWT_SECRET }).unless({ path: '/api/authenticate'})

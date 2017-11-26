@@ -426,7 +426,7 @@ var _a;
 /***/ "../../../../../src/client/app/boat/boat.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui card\">\n  <div class=\"image\">\n    <img [src]=\"boat?.photoUrlexterior\">\n  </div>\n  <div class=\"image\">\n    <img [src]=\"boat?.photoUrlinterior\">\n  </div>\n  <div class=\"content\">\n    <a class=\"header\">{{boat.name}}</a>\n    <div class=\"description\">\n      {{boat.address}} {{boat.city}}, {{boat.state}}  {{boat.zip}}\n    </div>\n  </div>\n  <div class=\"extra content\">\n    <span>\n      <i class=\"call icon\"></i>\n      {{boat.phone}}\n    </span>\n  </div>\n  <div class=\"extra content\" *ngIf=\"auth.isLoggedIn()\">\n    <i [routerLink]=\"['/update/',boat._id]\" class=\"circular edit link icon\"></i>\n    <i class=\"circular trash link icon\" ng-click=\"deleteBoat(boat._id)\"></i>\n  </div>\n</div>\n"
+module.exports = "<div class=\"ui card\">\n  <div class=\"image\">\n    <img [src]=\"boat?.photoUrlexterior\">\n  </div>\n  <div class=\"image\">\n    <img [src]=\"boat?.photoUrlinterior\">\n  </div>\n  <div class=\"content\">\n    <a class=\"header\">{{boat.name}}</a>\n    <div class=\"description\">\n      {{boat.address}} {{boat.city}}, {{boat.state}}  {{boat.zip}}\n    </div>\n  </div>\n  <div class=\"extra content\">\n    <span>\n      <i class=\"call icon\"></i>\n      {{boat.phone}}\n    </span>\n  </div>\n  <div class=\"extra content\" *ngIf=\"auth.isLoggedIn()\">\n    <i [routerLink]=\"['/update/',boat._id]\" class=\"circular edit link icon\"></i>\n    <i class=\"circular trash link icon\" (click)=\"deleteBoat(boat._id)\"></i>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -485,11 +485,7 @@ var BoatComponent = (function () {
     };
     BoatComponent.prototype.deleteBoat = function (boatId) {
         var _this = this;
-        // this.route.params.forEach((urlParameters) => {
-        //   this.boatId = urlParameters['id'];
-        // });
-        console.log('madeittodelete');
-        this.api.delete("delete/" + this.boatId)
+        this.api.delete("delete/" + boatId)
             .subscribe(function (data) { return _this.boat = data; });
     };
     return BoatComponent;
@@ -736,12 +732,12 @@ var ApiService = (function () {
             method: method,
             headers: headers
         });
-        console.log(body);
+        // console.log(requestOptions);
         if (body) {
             requestOptions.body = body;
         }
         var request = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["d" /* Request */](requestOptions);
-        console.log(request);
+        // console.log(request);
         return this.http.request(request)
             .map(function (res) { return res.json(); })
             .catch(function (res) { return _this.onRequestError(res); });
