@@ -28,12 +28,6 @@ function apiRouter(database) {
             return res.json(docs);
         });
     });
-
-    // router.deleteWithId(url: string, key: string, val: string): Observable < any > {
-    //     return this.http.delete(url + "/?" + key + "=" + val, this.options)
-    //         .map(this.extractData)
-    //         .catch(this.handleError);
-    // }
     
     router.use(
         checkJwt({ secret: process.env.JWT_SECRET }).unless({ path: '/api/authenticate'})
@@ -47,7 +41,6 @@ function apiRouter(database) {
     
     router.get('/boats', (req, res) => {
         const boat = req.body;
-        // console.log('made it get the boats');
 
         const boatsCollection = database.collection('boats');
 
@@ -82,7 +75,6 @@ function apiRouter(database) {
 
     router.post('/boats', (req, res) => {
         const user = req.body;
-        console.log('made it add');
 
         const boatsCollection = database.collection('boats');
 
