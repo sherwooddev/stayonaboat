@@ -358,7 +358,7 @@ var _a, _b;
 /***/ "../../../../../src/client/app/boat-list/boat-list.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui container\">\n  <div class=\"ui grid\">\n    <app-boat *ngFor=\"let boat of boats\" [boat]=\"boat\"></app-boat>\n  </div>\n</div>>\n"
+module.exports = "<div class=\"ui container\">\n  <div class=\"ui grid\">\n    <app-boat *ngFor=\"let boat of boats\" [boat]=\"boat\" (boatDeleted)=\"onBoatDeleted(boat)\"></app-boat>\n  </div>\n</div>>\n"
 
 /***/ }),
 
@@ -402,6 +402,12 @@ var BoatListComponent = (function () {
     function BoatListComponent(api) {
         this.api = api;
     }
+    BoatListComponent.prototype.onBoatDeleted = function (boat) {
+        var index = this.boats.findIndex(function (bt) { return (bt === boat); });
+        if (index != -1) {
+            this.boats.splice(index, 1);
+        }
+    };
     BoatListComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.api.get('boats')
@@ -426,7 +432,7 @@ var _a;
 /***/ "../../../../../src/client/app/boat/boat.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui card\">\n  <div class=\"image\">\n    <img [src]=\"boat?.photoUrlexterior\">\n  </div>\n  <div class=\"image\">\n    <img [src]=\"boat?.photoUrlinterior\">\n  </div>\n  <div class=\"content\">\n    <a class=\"header\">{{boat.name}}</a>\n    <div class=\"description\">\n      {{boat.address}} {{boat.city}}, {{boat.state}}  {{boat.zip}}\n    </div>\n  </div>\n  <div class=\"extra content\">\n    <span>\n      <i class=\"call icon\"></i>\n      {{boat.phone}}\n    </span>\n  </div>\n  <div class=\"extra content\" *ngIf=\"auth.isLoggedIn()\">\n    <i [routerLink]=\"['/update/',boat._id]\" class=\"circular edit link icon\"></i>\n    <i class=\"circular trash link icon\" (click)=\"deleteBoat(boat._id)\"></i>\n  </div>\n</div>\n"
+module.exports = "<div class=\"ui card\">\n  <div class=\"image\">\n    <img [src]=\"boat?.photoUrlexterior\">\n  </div>\n  <div class=\"image\">\n    <img [src]=\"boat?.photoUrlinterior\">\n  </div>\n  <div class=\"content\">\n    <a class=\"header\">{{boat.name}}</a>\n    <div class=\"description\">\n      {{boat.address}} {{boat.city}}, {{boat.state}}  {{boat.zip}}\n    </div>\n  </div>\n  <div class=\"extra content\">\n    <span>\n      <i class=\"call icon\"></i>\n      {{boat.phone}}\n    </span>\n  </div>\n  <div class=\"extra content\" *ngIf=\"auth.isLoggedIn()\">\n    <i [routerLink]=\"['/update/',boat._id]\" class=\"circular edit link icon\"></i>\n    <!-- <i class=\"circular trash link icon\" (click)=\"deleteBoat(boat._id)\"></i> -->\n    <i class=\"circular trash link icon\" (click)=\"deleteBoat(boat)\"></i>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -478,15 +484,21 @@ var BoatComponent = (function () {
         this.auth = auth;
         this.route = route;
         this.api = api;
+        this.boatDeleted = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]();
         this.loading = false;
+        // boats: Boat[];
         this.columnClass = 'four wide column';
     }
     BoatComponent.prototype.ngOnInit = function () {
     };
-    BoatComponent.prototype.deleteBoat = function (boatId) {
+    BoatComponent.prototype.deleteBoat = function (boat) {
         var _this = this;
-        this.api.delete("delete/" + boatId)
-            .subscribe(function (data) { return _this.boat = data; });
+        if (confirm("Are you sure you want to delete this boat")) {
+            this.api.delete("delete/" + boat._id)
+                .subscribe(function (success) {
+                _this.boatDeleted.emit();
+            });
+        }
     };
     return BoatComponent;
 }());
@@ -494,6 +506,10 @@ __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["F" /* Input */])(),
     __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__shared_boat_model__["Boat"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__shared_boat_model__["Boat"]) === "function" && _a || Object)
 ], BoatComponent.prototype, "boat", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["T" /* Output */])(),
+    __metadata("design:type", typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["x" /* EventEmitter */]) === "function" && _b || Object)
+], BoatComponent.prototype, "boatDeleted", void 0);
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["z" /* HostBinding */])('class'),
     __metadata("design:type", Object)
@@ -504,10 +520,10 @@ BoatComponent = __decorate([
         template: __webpack_require__("../../../../../src/client/app/boat/boat.component.html"),
         styles: [__webpack_require__("../../../../../src/client/app/boat/boat.component.scss")]
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__shared_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_auth_service__["a" /* AuthService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__shared_api_service__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_api_service__["a" /* ApiService */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__shared_auth_service__["a" /* AuthService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_auth_service__["a" /* AuthService */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* ActivatedRoute */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__shared_api_service__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__shared_api_service__["a" /* ApiService */]) === "function" && _e || Object])
 ], BoatComponent);
 
-var _a, _b, _c, _d;
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=boat.component.js.map
 
 /***/ }),
