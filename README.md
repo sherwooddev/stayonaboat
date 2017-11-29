@@ -1,6 +1,6 @@
 # StayOnABoat
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.4.  The project scope is to generate a site for people to list boats for rental.  Current state of the project includes working functionality for API services consisting of authentication, adding, retrieval and deletion of records from a MongoDB database.  ToDo includes: updating of records, additional validation, scheduling and beautification.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.4.  The project scope is to generate a site for people to list boats for rental.  Current state of the project includes working functionality for API services consisting of authentication, adding, retrieval, update and deletion of records from a MongoDB database.  ToDo includes: refactoring of menu items like the add button, additional validation, scheduling and beautification.
 
 ## Running the Application
 
