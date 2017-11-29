@@ -1,4 +1,4 @@
-<div class="ui card">
+<!-- <div class="ui card">
   <div class="image">
     <img [src]="updateBoat?.photoUrlexterior">
   </div>
@@ -17,10 +17,10 @@
       {{updateBoat.phone}}
     </span>
   </div>
-</div>
+</div> -->
 
 <div class="update-form-container">
-    <div class="ui icon message" *ngIf="updateBoat">
+    <!-- <div class="ui icon message" *ngIf="updateBoat">
         <i class="notched check green icon"></i>
         <i class="close icon" (click)="newBoat = null"></i>
         <div class="content">
@@ -29,8 +29,8 @@
           </div>
           <p>Name: {{updateBoat.name}}</p>
         </div>
-    </div>
-    <form class="ui big form" #boatForm="ngForm" (submit)="onSubmit(boatForm)" [class.loading]="loading">
+    </div> -->
+    <form class="ui big form" #updateBoatForm="ngForm" (submit)="onSubmit(updateBoatForm)" [class.loading]="loading">
       <!-- <div class="fields">
         <div class="eight wide field">
           <label>First Name</label>
@@ -96,6 +96,6 @@
           <label>Photo URL Interior</label>
           <input type="text" class="form-control" id="photoUrlinterior" [(ngModel)]="updateBoat.photoUrlinterior" name="photoUrlinterior">
       </div>
-      <button type="submit" class="ui submit large grey button right floated">Submit</button>
+      <button type="submit" class="ui submit large grey button right floated" (click)="save()">Save</button>
     </form>
   </div>

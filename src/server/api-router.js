@@ -74,11 +74,11 @@ function apiRouter(database) {
     });
 
     router.post('/boats', (req, res) => {
-        const user = req.body;
+        const boat = req.body;
 
         const boatsCollection = database.collection('boats');
 
-        boatsCollection.insertOne(user, (err, r) => {
+        boatsCollection.insertOne(boat, (err, r) => {
         if (err) {
             return res.status(500).json({ error: 'Error inserting new record.' });
         }
@@ -91,7 +91,6 @@ function apiRouter(database) {
   
     router.post('/authenticate', (req, res) => {
         const user = req.body;
-
         const usersCollection = database.collection('users');
 
         usersCollection
@@ -116,7 +115,26 @@ function apiRouter(database) {
             token: token
             });
         });
-    });  
+    });
+
+    router.put('/update', (req, res) => {
+        const boat = req.body;
+        const boatsCollection = database.collection('boats');
+
+        var ObjectID = require('mongodb').ObjectID;
+
+        boatsCollection.findOneAndUpdate(
+            {_id: new ObjectID(boat.id)},
+            boat,
+            {upsert: true, new: true, runValidators: true}, (err, docs) => {
+                if (err) {
+                    console.log('error');
+                    console.log(err);    
+                    res.send(err); 
+            }
+            return res.json(docs);
+        });
+    });
 
   return router;
 }

@@ -761,7 +761,7 @@ var ApiService = (function () {
     ApiService.prototype.onRequestError = function (res) {
         var statusCode = res.status;
         console.log(res.status);
-        console.log('heres the error');
+        // console.log('heres the error');
         console.log(res);
         var body = res.json();
         console.log(body);
@@ -842,7 +842,7 @@ var _a;
 /***/ "../../../../../src/client/app/update-boat/update-boat.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"ui card\">\n  <div class=\"image\">\n    <img [src]=\"updateBoat?.photoUrlexterior\">\n  </div>\n  <div class=\"image\">\n    <img [src]=\"updateBoat?.photoUrlinterior\">\n  </div>\n  <div class=\"content\">\n    <a class=\"header\">{{updateBoat.name}}</a>\n    <div class=\"description\">\n      {{updateBoat.address}} {{updateBoat.city}}, {{updateBoat.state}}  {{updateBoat.zip}}\n    </div>\n  </div>\n  <div class=\"extra content\">\n    <span>\n      <i class=\"call icon\"></i>\n      {{updateBoat.phone}}\n    </span>\n  </div>\n</div>\n\n<div class=\"update-form-container\">\n    <div class=\"ui icon message\" *ngIf=\"updateBoat\">\n        <i class=\"notched check green icon\"></i>\n        <i class=\"close icon\" (click)=\"newBoat = null\"></i>\n        <div class=\"content\">\n          <div class=\"header\">\n            Boat updated!\n          </div>\n          <p>Name: {{updateBoat.name}}</p>\n        </div>\n    </div>\n    <form class=\"ui big form\" #boatForm=\"ngForm\" (submit)=\"onSubmit(boatForm)\" [class.loading]=\"loading\">\n      <!-- <div class=\"fields\">\n        <div class=\"eight wide field\">\n          <label>First Name</label>\n          <input type=\"text\" class=\"form-control\" id=\"firstName\" name=\"firstName\" [(ngModel)]=\"updateBoat.firstName\">\n        </div>\n        <div class=\"eight wide field\">\n          <label>Last Name</label>\n          <input type=\"text\" class=\"form-control\" id=\"lastName\" name=\"lastName\" [(ngModel)]=\"updateBoat.lastName\">\n        </div>\n      </div> -->\n      <div class=\"field\">\n        <label>Name</label>\n        <input type=\"text\" class=\"form-control\" id=\"name\" [(ngModel)]=\"updateBoat.name\" name=\"name\">\n      </div>\n      <div class=\"field\">\n        <label>Address</label>\n        <input type=\"text\" class=\"form-control\" id=\"address\" [(ngModel)]=\"updateBoat.address\" name=\"address\">\n      </div>\n      <div class=\"field\">\n          <label>Address 2</label>\n          <input type=\"text\" class=\"form-control\" id=\"address2\" [(ngModel)]=\"updateBoat.address2\" name=\"address2\">\n      </div>\n      <div class=\"field\">\n          <label>City</label>\n          <input type=\"text\" class=\"form-control\" id=\"city\" [(ngModel)]=\"updateBoat.city\" name=\"city\">\n      </div>\n      <div class=\"field\">\n          <label>State</label>\n          <input type=\"text\" class=\"form-control\" id=\"state\" maxlength=\"2\" [(ngModel)]=\"updateBoat.state\" name=\"state\">\n      </div>\n      <div class=\"field\">\n          <label>Zip Code</label>\n          <input type=\"text\" class=\"form-control\" id=\"zip\" maxlength=\"5\" [(ngModel)]=\"updateBoat.zip\" name=\"zip\">\n      </div>\n      <div class=\"field\">\n          <label>Country</label>\n          <input type=\"text\" class=\"form-control\" id=\"country\" [(ngModel)]=\"updateBoat.country\" name=\"country\">\n      </div>\n      <div class=\"equal width fields\">\n        <!-- <div class=\"field\">\n          <label>Phone</label>\n          <input type=\"text\" class=\"form-control\" id=\"areaCode\" maxlength=\"5\" [(ngModel)]=\"updateBoat.areaCode\" name=\"areaCode\">\n        </div>\n        <div class=\"field\">\n          <label>&nbsp;</label>\n          <input type=\"text\" class=\"form-control\" id=\"prefix\" maxlength=\"3\" [(ngModel)]=\"updateBoat.prefix\" name=\"prefix\">\n        </div>\n        <div class=\"field\">\n          <label>&nbsp;</label>\n          <input type=\"text\" maxlength=\"4\" placeholder=\"####\" name=\"lineNumber\" ngModel>\n          <input type=\"text\" class=\"form-control\" id=\"lineNumber\" maxlength=\"4\" [(ngModel)]=\"updateBoat.lineNumber\" name=\"lineNumber\">\n        </div> -->\n        <div class=\"field\">\n          <label>Phone</label>\n          <input type=\"text\" class=\"form-control\" id=\"phone\" [(ngModel)]=\"updateBoat.phone\" name=\"phone\">\n        </div>\n      </div>\n      <div class=\"field\">\n        <label>Photo URL Exterior</label>\n        <input type=\"text\" class=\"form-control\" id=\"photoUrlexterior\" [(ngModel)]=\"updateBoat.photoUrlexterior\" name=\"photoUrlexterior\">\n      </div>\n      <div class=\"field\">\n          <label>Photo URL Interior</label>\n          <input type=\"text\" class=\"form-control\" id=\"photoUrlinterior\" [(ngModel)]=\"updateBoat.photoUrlinterior\" name=\"photoUrlinterior\">\n      </div>\n      <button type=\"submit\" class=\"ui submit large grey button right floated\">Submit</button>\n    </form>\n  </div>"
+module.exports = "<!-- <div class=\"ui card\">\n  <div class=\"image\">\n    <img [src]=\"updateBoat?.photoUrlexterior\">\n  </div>\n  <div class=\"image\">\n    <img [src]=\"updateBoat?.photoUrlinterior\">\n  </div>\n  <div class=\"content\">\n    <a class=\"header\">{{updateBoat.name}}</a>\n    <div class=\"description\">\n      {{updateBoat.address}} {{updateBoat.city}}, {{updateBoat.state}}  {{updateBoat.zip}}\n    </div>\n  </div>\n  <div class=\"extra content\">\n    <span>\n      <i class=\"call icon\"></i>\n      {{updateBoat.phone}}\n    </span>\n  </div>\n</div> -->\n\n<div class=\"update-form-container\">\n    <!-- <div class=\"ui icon message\" *ngIf=\"updateBoat\">\n        <i class=\"notched check green icon\"></i>\n        <i class=\"close icon\" (click)=\"newBoat = null\"></i>\n        <div class=\"content\">\n          <div class=\"header\">\n            Boat updated!\n          </div>\n          <p>Name: {{updateBoat.name}}</p>\n        </div>\n    </div> -->\n    <form class=\"ui big form\" #updateBoatForm=\"ngForm\" (submit)=\"onSubmit(updateBoatForm)\" [class.loading]=\"loading\">\n      <!-- <div class=\"fields\">\n        <div class=\"eight wide field\">\n          <label>First Name</label>\n          <input type=\"text\" class=\"form-control\" id=\"firstName\" name=\"firstName\" [(ngModel)]=\"updateBoat.firstName\">\n        </div>\n        <div class=\"eight wide field\">\n          <label>Last Name</label>\n          <input type=\"text\" class=\"form-control\" id=\"lastName\" name=\"lastName\" [(ngModel)]=\"updateBoat.lastName\">\n        </div>\n      </div> -->\n      <div class=\"field\">\n        <label>Name</label>\n        <input type=\"text\" class=\"form-control\" id=\"name\" [(ngModel)]=\"updateBoat.name\" name=\"name\">\n      </div>\n      <div class=\"field\">\n        <label>Address</label>\n        <input type=\"text\" class=\"form-control\" id=\"address\" [(ngModel)]=\"updateBoat.address\" name=\"address\">\n      </div>\n      <div class=\"field\">\n          <label>Address 2</label>\n          <input type=\"text\" class=\"form-control\" id=\"address2\" [(ngModel)]=\"updateBoat.address2\" name=\"address2\">\n      </div>\n      <div class=\"field\">\n          <label>City</label>\n          <input type=\"text\" class=\"form-control\" id=\"city\" [(ngModel)]=\"updateBoat.city\" name=\"city\">\n      </div>\n      <div class=\"field\">\n          <label>State</label>\n          <input type=\"text\" class=\"form-control\" id=\"state\" maxlength=\"2\" [(ngModel)]=\"updateBoat.state\" name=\"state\">\n      </div>\n      <div class=\"field\">\n          <label>Zip Code</label>\n          <input type=\"text\" class=\"form-control\" id=\"zip\" maxlength=\"5\" [(ngModel)]=\"updateBoat.zip\" name=\"zip\">\n      </div>\n      <div class=\"field\">\n          <label>Country</label>\n          <input type=\"text\" class=\"form-control\" id=\"country\" [(ngModel)]=\"updateBoat.country\" name=\"country\">\n      </div>\n      <div class=\"equal width fields\">\n        <!-- <div class=\"field\">\n          <label>Phone</label>\n          <input type=\"text\" class=\"form-control\" id=\"areaCode\" maxlength=\"5\" [(ngModel)]=\"updateBoat.areaCode\" name=\"areaCode\">\n        </div>\n        <div class=\"field\">\n          <label>&nbsp;</label>\n          <input type=\"text\" class=\"form-control\" id=\"prefix\" maxlength=\"3\" [(ngModel)]=\"updateBoat.prefix\" name=\"prefix\">\n        </div>\n        <div class=\"field\">\n          <label>&nbsp;</label>\n          <input type=\"text\" maxlength=\"4\" placeholder=\"####\" name=\"lineNumber\" ngModel>\n          <input type=\"text\" class=\"form-control\" id=\"lineNumber\" maxlength=\"4\" [(ngModel)]=\"updateBoat.lineNumber\" name=\"lineNumber\">\n        </div> -->\n        <div class=\"field\">\n          <label>Phone</label>\n          <input type=\"text\" class=\"form-control\" id=\"phone\" [(ngModel)]=\"updateBoat.phone\" name=\"phone\">\n        </div>\n      </div>\n      <div class=\"field\">\n        <label>Photo URL Exterior</label>\n        <input type=\"text\" class=\"form-control\" id=\"photoUrlexterior\" [(ngModel)]=\"updateBoat.photoUrlexterior\" name=\"photoUrlexterior\">\n      </div>\n      <div class=\"field\">\n          <label>Photo URL Interior</label>\n          <input type=\"text\" class=\"form-control\" id=\"photoUrlinterior\" [(ngModel)]=\"updateBoat.photoUrlinterior\" name=\"photoUrlinterior\">\n      </div>\n      <button type=\"submit\" class=\"ui submit large grey button right floated\" (click)=\"save()\">Save</button>\n    </form>\n  </div>"
 
 /***/ }),
 
@@ -872,6 +872,7 @@ module.exports = module.exports.toString();
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared_api_service__ = __webpack_require__("../../../../../src/client/app/shared/api.service.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -884,10 +885,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var UpdateBoatComponent = (function () {
-    function UpdateBoatComponent(route, api) {
+    function UpdateBoatComponent(route, api, location) {
         this.route = route;
         this.api = api;
+        this.location = location;
         this.loading = false;
     }
     UpdateBoatComponent.prototype.ngOnInit = function () {
@@ -899,29 +902,34 @@ var UpdateBoatComponent = (function () {
             .subscribe(function (data) { return _this.updateBoat = data; });
         // console.log('im back');
     };
+    UpdateBoatComponent.prototype.goBack = function () {
+        this.location.back();
+    };
     UpdateBoatComponent.prototype.onSubmit = function (form) {
         var _this = this;
         this.loading = true;
         var formValues = Object.assign({}, form.value);
         var boat = {
-            id: "{formValues.id}",
-            name: formValues.firstName + " " + formValues.lastName,
+            id: this.boatId,
+            name: formValues.name,
             address: formValues.address,
             address2: formValues.address2,
             city: formValues.city,
             state: formValues.state,
             zip: formValues.zip,
             country: formValues.country,
-            phone: formValues.areaCode + " " + formValues.prefix + "-" + formValues.lineNumber,
+            phone: formValues.phone,
             photoUrlexterior: formValues.photoExterior,
             photoUrlinterior: formValues.photoInterior
         };
-        this.api.put('boats', boat)
-            .subscribe(function (data) {
-            form.reset();
-            _this.loading = false;
-            _this.updateBoat = data;
-        });
+        this.api.put('update', boat)
+            .subscribe(function () { return _this.goBack(); });
+        // this.api.put('update', boat)
+        // .subscribe(data => {
+        //   // form.reset();
+        //   this.loading = false;
+        //   this.updateBoat = data;
+        // });
     };
     return UpdateBoatComponent;
 }());
@@ -932,10 +940,10 @@ UpdateBoatComponent = __decorate([
         styles: [__webpack_require__("../../../../../src/client/app/update-boat/update-boat.component.scss")],
         providers: [__WEBPACK_IMPORTED_MODULE_1__shared_api_service__["a" /* ApiService */]]
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__shared_api_service__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_api_service__["a" /* ApiService */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1__shared_api_service__["a" /* ApiService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__shared_api_service__["a" /* ApiService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__angular_common__["f" /* Location */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_common__["f" /* Location */]) === "function" && _c || Object])
 ], UpdateBoatComponent);
 
-var _a, _b;
+var _a, _b, _c;
 //# sourceMappingURL=update-boat.component.js.map
 
 /***/ }),

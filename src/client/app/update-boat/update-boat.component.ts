@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Boat } from '../shared/boat.model';
 import { ApiService } from '../shared/api.service';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-update-boat',
@@ -20,7 +21,8 @@ export class UpdateBoatComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    public api: ApiService
+    public api: ApiService,
+    private location: Location
   ) { }
 
   ngOnInit() {
@@ -29,7 +31,10 @@ export class UpdateBoatComponent implements OnInit {
     });
     this.api.getById(`update/${this.boatId}`)
       .subscribe(data => this.updateBoat = data);
-    // console.log('im back');
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
   onSubmit(form: NgForm) {
@@ -38,25 +43,22 @@ export class UpdateBoatComponent implements OnInit {
     const formValues = Object.assign({}, form.value);
 
     const boat: Boat = {
-      id: `{formValues.id}`,
-      name: `${formValues.firstName} ${formValues.lastName}`,
+      id: this.boatId,
+      name: formValues.name,
       address: formValues.address,
       address2: formValues.address2,
       city: formValues.city,
       state: formValues.state,
       zip: formValues.zip,
       country: formValues.country,
-      phone: `${formValues.areaCode} ${formValues.prefix}-${formValues.lineNumber}`,
+      phone: formValues.phone,
       photoUrlexterior: formValues.photoExterior,
       photoUrlinterior: formValues.photoInterior
     };
 
-    this.api.put('boats', boat)
-      .subscribe(data => {
-        form.reset();
-        this.loading = false;
-        this.updateBoat = data;
-      });
+    this.api.put('update', boat)
+      .subscribe(() => this.goBack());
+
   }
 
 }
